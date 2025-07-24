@@ -27,18 +27,7 @@ app.get("/home",async(req,res)=>{
     }
 })
 
-app.get("/get_news_data/:id",async (req,res)=>{
-    const data = req.body;
-    console.log(data)
-    // try{
-    //     const data = await News.findByIdAndUpdate(
-            
-    //     )
-    // }
-    // catch(err){
-    //     console.log(err)    
-    // }
-})
+
 app.post("/add_news",async (req,res)=>{
     const data = req.body;
     try{
@@ -72,7 +61,7 @@ app.put("/edit_news",async (req,res)=>{
         {new : true}
     )
     res.json({
-        message: "✅ Data updated successfully",
+        message: "Data updated successfully",
         updatedNews,
     });
     }
@@ -84,6 +73,24 @@ app.put("/edit_news",async (req,res)=>{
     });
     }
 })
+
+app.delete("/delete_news/:id", async (req, res) => {
+    const { id } = req.params;
+    console.log("Deleting ID:", id);
+    try {
+        const data = await News.findByIdAndDelete(id);
+        if (data) {
+            res.json({ message: "News deleted successfully", deleted: data });
+            console.log("Deleted:", data);
+        } else {
+            res.status(404).json({ message: "News not found" });
+            console.log("News not found");
+        }
+    } catch (err) {
+        console.error("Error deleting news:", err);
+        res.status(500).json({ message: "Server error", error: err.message });
+    }
+});
 
 app.listen(5000,()=>{
     console.log("Server Started");

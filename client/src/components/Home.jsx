@@ -31,17 +31,17 @@ const Home = () => {
     if (window.confirm('Are you sure you want to delete this news?')) {
       try {
         await fetch(`http://localhost:5000/delete_news/${id}`, { method: 'DELETE' });
-        alert('✅ News deleted successfully!');
+        alert('News deleted successfully!');
         fetchNews(); // refresh list
       } catch (err) {
         console.error(err);
-        alert('❌ Failed to delete news.');
+        alert('Failed to delete news.');
       }
     }
   };
 
   const handleUpdate = (news) => {
-    alert(`🛠️ Implement update modal for: ${news.title}`);
+    alert(`Implement update modal for: ${news.title}`);
     try{
       navigate("/edit_news",{ state: { id: news._id,news } })
     }
@@ -79,7 +79,7 @@ const Home = () => {
                       className="dropdown-item"
                       onClick={() => handleUpdate(news)}
                     >
-                      ✏️ Update
+                      Update
                     </button>
                   </li>
                   <li>
@@ -87,7 +87,7 @@ const Home = () => {
                       className="dropdown-item text-danger"
                       onClick={() => handleDelete(news._id)}
                     >
-                      🗑️ Delete
+                      Delete
                     </button>
                   </li>
                 </ul>

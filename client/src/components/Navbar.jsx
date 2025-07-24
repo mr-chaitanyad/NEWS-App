@@ -33,11 +33,6 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/edit_news" className="nav-link">
-                Edit News
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink to="/all-news" className="nav-link">
                 View All News
               </NavLink>
